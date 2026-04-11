@@ -9,6 +9,8 @@ const orderRoutes = require('./routes/order.routes');
 const paymentRoutes = require('./routes/payment.routes');
 const { errorHandler } = require('./middlewares/error.middleware');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
 
 const app = express();
 
@@ -20,6 +22,9 @@ app.use(express.json());
 
 // Static folder
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+// Swagger
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Routes
 app.use('/api/users', userRoutes);
