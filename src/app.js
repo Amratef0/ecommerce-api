@@ -11,6 +11,7 @@ const { errorHandler } = require('./middlewares/error.middleware');
 const path = require('path');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./config/swagger');
+const cors = require('cors');
 
 const app = express();
 
@@ -18,6 +19,7 @@ const app = express();
 connectDB();
 
 // Middleware
+app.use(cors());
 app.use(express.json());
 
 // Static folder
