@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { register, login, logout } = require('../controllers/auth.controller');
+const { register, login, logout, forgotPassword, resetPassword } = require('../controllers/auth.controller');
 const { protect } = require('../middlewares/auth.middleware');
 const { validate } = require('../middlewares/validation.middleware');
 const { registerValidation, loginValidation } = require('../validations/auth.validation');
@@ -79,5 +79,61 @@ router.post('/login', loginValidation, validate, login);
  *         description: Not authorized
  */
 router.post('/logout', protect, logout);
+
+/**
+ * @swagger
+ * /api/auth/forgot-password:
+ *   post:
+ *     summary: Forgot password
+ *     tags: [Auth]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *             properties:
+ *               email:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Email sent successfully
+ *       404:
+ *         description: User not found
+ */
+router.post('/forgot-password', forgotPassword);
+
+/**
+ * @swagger
+ * /api/auth/reset-password/{token}:
+ *   post:
+ *     summary: Reset password
+ *     tags: [Auth]
+ *     parameters:
+ *       - in: path
+ *         name: token
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - password
+ *             properties:
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Password reset successfully
+ *       400:
+ *         description: Invalid or expired token
+ */
+router.post('/reset-password/:token', resetPassword);
 
 module.exports = router;
