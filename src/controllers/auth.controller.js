@@ -24,9 +24,8 @@ const register = async (req, res, next) => {
             password: hashedPassword
         });
 
-sendEmail(user.email, 'Welcome to Our Store! 🎉', welcomeEmail(user.name))
-    .catch(err => console.log('Email error:', err.message));
-    
+        await sendEmail(user.email, 'Welcome to Our Store! 🎉', welcomeEmail(user.name));
+
         const token = jwt.sign(
             { id: user._id },
             process.env.JWT_SECRET,
