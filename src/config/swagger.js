@@ -10,12 +10,12 @@ const options = {
         },
         servers: [
             {
-                url: 'http://localhost:3000',
-                description: 'Local server'
-            },
-            {
                 url: 'https://ecommerce-api-production-6fca.up.railway.app',
                 description: 'Production server'
+            },
+            {
+                url: 'http://localhost:3000',
+                description: 'Local server'
             }
         ],
         components: {
