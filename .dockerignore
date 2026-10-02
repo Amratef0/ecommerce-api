@@ -1,0 +1,31 @@
+# Dependencies (installed inside the image)
+node_modules
+npm-debug.log*
+
+# VCS / CI
+.git
+.gitignore
+.github
+
+# Secrets / local config
+.env
+.env.*
+!.env.example
+
+# Local uploads & logs
+uploads
+logs
+*.log
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Docs / editors / OS
+README.md
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+coverage
