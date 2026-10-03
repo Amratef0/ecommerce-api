@@ -104,7 +104,7 @@ docker run -p 3000:3000 --env-file .env ecommerce-api
 
 ---
 
-## 🔧 Environment Variables
+##  Environment Variables
 
 Create a `.env` file in the project root (start from `.env.example`):
 
